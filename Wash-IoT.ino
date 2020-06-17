@@ -21,7 +21,7 @@ decode_results results;
 #define red 16                // LED RED in 16 (OUTPUT)
 #define green 15              // LED GREEN in 15 (OUTPUT)
 
-const int interval = 4000;   // 20 seconds of handwashing
+const int interval = 20000;   // 20 seconds of handwashing
 unsigned long start;          // start, stop & elapsed variables for stopwatch
 unsigned long stop;           // use longs because millis() can return large values over time
 unsigned long elapsed;
@@ -75,7 +75,7 @@ void loop() {
     // ***** IF START BUTTON IS PRESSED *****
     if(result == start_btn){        // millis() starts counting as soon as program starts running
         start = millis();           // save start time in "start"
-        Serial.println(start);
+        Serial.println("The hand washing may commence~~!");
 
         digitalWrite(blue, HIGH);   // blue LED to indicate start button has been pressed
      }
@@ -121,7 +121,9 @@ void loop() {
           
         } else {      
           digitalWrite(green, HIGH);                
-          Serial.println(elapsed);    // else don't send tweet
+          Serial.print("SUCCESS - Elapsed time: ");   // else don't send tweet
+          Serial.print(elapsed/1000); // calculate seconds
+          Serial.println(" seconds.");   
         }
      }
     
